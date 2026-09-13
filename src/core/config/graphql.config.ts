@@ -1,0 +1,17 @@
+import type { ApolloDriverConfig } from '@nestjs/apollo';
+import { ConfigService } from '@nestjs/config';
+import { join } from 'path'
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+
+export function getGraphQLConfig(
+  configService: ConfigService
+): ApolloDriverConfig {
+  return {
+    graphiql: false,
+    plugins: [ApolloServerPluginLandingPageLocalDefault()],
+    path: configService.getOrThrow('GRAPHQL_PREFIX'),
+    autoSchemaFile: join(process.cwd(), 'src/core/graphql/schema.gql'),
+    sortSchema: true,
+    context: ({ req, res }: { req: Request, res: Response }) => ({ req, res })
+  }
+}

@@ -1,0 +1,87 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeveloperExperienceModel {
+  achievements: [String!]!
+  company: String!
+  createdAt: DateTime!
+  endDate: DateTime!
+  id: ID!
+  post: String!
+  startDate: DateTime!
+  updatedAt: DateTime!
+}
+
+type DeveloperLinksModel {
+  bitbucket: String
+  createdAt: DateTime!
+  github: String
+  gitlab: String
+  hh: String
+  id: ID!
+  linkedin: String
+  updatedAt: DateTime!
+}
+
+type DeveloperModel {
+  createdAt: DateTime!
+  description: String
+  experiences: [DeveloperExperienceModel!]!
+  id: ID!
+  links: DeveloperLinksModel
+  name: String!
+  projects: [DeveloperProjectModel!]!
+  skills: [DeveloperSkillModel!]!
+  updatedAt: DateTime!
+}
+
+type DeveloperProjectModel {
+  createdAt: DateTime!
+  id: ID!
+  link: String!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type DeveloperSkillModel {
+  createdAt: DateTime!
+  description: String
+  experience: Int!
+  id: ID!
+  skill: Skill!
+  updatedAt: DateTime!
+}
+
+type Query {
+  findAllDevelopers: [DeveloperModel!]!
+  findOneDeveloper(id: String!): DeveloperModel!
+}
+
+enum Skill {
+  COCKROACH_DB
+  CSS
+  DOCKER
+  GIT
+  GRAPH_QL
+  HTML
+  JAVA_SCRIPT
+  MONGO_DB
+  NEST_JS
+  NEXT_JS
+  NGINX
+  NODE_JS
+  NUXT_JS
+  POSTGRE_SQL
+  PRISMA
+  REACT
+  REDIS
+  SCSS
+  TYPE_SCRIPT
+  VUE
+}

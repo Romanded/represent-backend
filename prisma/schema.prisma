@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client"
+  output = "../src/core/prisma/generated"
+}
+
+datasource db {
+  provider = "cockroachdb"
+}
+
+enum Skill {
+  HTML @map("html")
+  CSS @map("css")
+  SCSS @map("scss")
+  JAVA_SCRIPT @map("javaScript")
+  TYPE_SCRIPT @map("typeScript")
+  NODE_JS @map("nodeJS")
+  VUE @map("vue")
+  NUXT_JS @map("nuxtJS")
+  REACT @map("react")
+  NEXT_JS @map("nextJS")
+  NEST_JS @map("nestJS")
+  PRISMA @map("prisma")
+  GRAPH_QL @map("graphQL")
+  COCKROACH_DB @map("cockroachDB")
+  POSTGRE_SQL @map("postgreSQL")
+  MONGO_DB @map("mongoDB")
+  REDIS @map("redis")
+  DOCKER @map("docker")
+  NGINX @map("nginx")
+  GIT @map("git")
+}
+
+model Developer {
+  id String @id @default(uuid())
+
+  name String
+  description String?
+  links DeveloperLinks?
+  skills DeveloperSkill[]
+  experiences DeveloperExperience[]
+  projects DeveloperProject[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("developers")
+}
+
+model DeveloperLinks {
+  id String @id @default(uuid())
+
+  github String?
+  gitlab String?
+  bitbucket String?
+  linkedin String?
+  hh String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  developer Developer @relation(fields: [developerId], references: [id])
+  developerId String @unique @map("developer_id")
+
+  @@map("developer_links")
+}
+
+model DeveloperSkill {
+  id String @id @default(uuid())
+
+  skill Skill
+  experience Int
+  description String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  developer Developer @relation(fields: [developerId], references: [id])
+  developerId String @map("developer_id")
+
+  @@map("developer_skills")
+}
+
+model DeveloperExperience {
+  id String @id @default(uuid())
+
+  company String
+  post String
+  startDate DateTime @map("start_date")
+  endDate DateTime @map("end_date")
+  achievements String[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  developer Developer @relation(fields: [developerId], references: [id])
+  developerId String @map("developer_id")
+
+  @@map("developer_expiriences")
+}
+
+model DeveloperProject {
+  id String @id @default(uuid())
+
+  name String
+  link String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  developer Developer @relation(fields: [developerId], references: [id])
+  developerId String @map("developer_id")
+
+  @@map("developer_projects")
+}
