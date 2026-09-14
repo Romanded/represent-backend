@@ -54,34 +54,11 @@ type DeveloperSkillModel {
   description: String
   experience: Int!
   id: ID!
-  skill: Skill!
+  skill: String!
   updatedAt: DateTime!
 }
 
 type Query {
   findAllDevelopers: [DeveloperModel!]!
-  findOneDeveloper(id: String!): DeveloperModel!
-}
-
-enum Skill {
-  COCKROACH_DB
-  CSS
-  DOCKER
-  GIT
-  GRAPH_QL
-  HTML
-  JAVA_SCRIPT
-  MONGO_DB
-  NEST_JS
-  NEXT_JS
-  NGINX
-  NODE_JS
-  NUXT_JS
-  POSTGRE_SQL
-  PRISMA
-  REACT
-  REDIS
-  SCSS
-  TYPE_SCRIPT
-  VUE
+  findOneDeveloper(id: String!): DeveloperModel
 }

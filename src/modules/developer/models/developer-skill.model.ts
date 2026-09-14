@@ -1,12 +1,12 @@
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
-import { Skill } from '../../../shared/types/developer/index.js';
+import type { Skill } from '../../../shared/types/developer/index.js'
 
 @ObjectType()
 export class DeveloperSkillModel {
   @Field(() => ID)
   id: string;
 
-  @Field(() => Skill)
+  @Field(() => String)
   skill: Skill;
 
   @Field(() => Int)
