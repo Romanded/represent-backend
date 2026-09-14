@@ -14,6 +14,7 @@ export function getGraphQLConfig(
       ? true
       : join(process.cwd(), 'src/core/graphql/schema.gql'),
     sortSchema: true,
+    introspection: true,
     context: ({ req, res }: { req: Request, res: Response }) => ({ req, res })
   }
 }
