@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "nest build",
-    "start": "prisma generate && prisma migrate dev && prisma db seed && nest start",
+    "start": "prisma generate && prisma db seed && nest start",
     "start:dev": "prisma generate && prisma migrate dev && prisma db seed && nest start --watch",
     "start:prod": "node dist/main"
   },
