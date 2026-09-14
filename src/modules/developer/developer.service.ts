@@ -9,10 +9,25 @@ export class DeveloperService {
   }
 
   findOne(id: string) {
-    return this.prismaService.developer.findUnique({where: { id }})
+    return this.prismaService.developer.findUnique({
+      where: { id },
+      include: {
+        links: true,
+        skills: true,
+        experiences: true,
+        projects: true,
+      },
+    })
   }
 
   findAll() {
-    return this.prismaService.developer.findMany()
+    return this.prismaService.developer.findMany({
+      include: {
+        links: true,
+        skills: true,
+        experiences: true,
+        projects: true,
+      },
+    })
   }
 }
