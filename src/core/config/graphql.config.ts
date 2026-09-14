@@ -10,7 +10,9 @@ export function getGraphQLConfig(
     graphiql: false,
     plugins: [ApolloServerPluginLandingPageLocalDefault()],
     path: configService.getOrThrow('GRAPHQL_PREFIX'),
-    autoSchemaFile: join(process.cwd(), 'src/core/graphql/schema.gql'),
+    autoSchemaFile: process.env.IS_VERCEL === '1'
+      ? true
+      : join(process.cwd(), 'src/core/graphql/schema.gql'),
     sortSchema: true,
     context: ({ req, res }: { req: Request, res: Response }) => ({ req, res })
   }
