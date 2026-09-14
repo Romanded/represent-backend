@@ -8,11 +8,11 @@
   "type": "module",
   "scripts": {
     "build": "nest build",
-    "start": "prisma generate && prisma db seed && nest start",
-    "start:dev": "prisma generate && prisma db seed && nest start --watch",
+    "start": "npx prisma generate && npx prisma db seed && nest start",
+    "start:dev": "npx prisma generate && npx prisma db seed && nest start --watch",
     "start:prod": "node dist/main",
-    "postinstall": "prisma generate",
-    "vercel-build": "prisma generate && nest build"
+    "postinstall": "npx prisma generate",
+    "vercel-build": "npx prisma generate && nest build"
   },
   "dependencies": {
     "@apollo/server": "^5.5.1",
@@ -25,10 +25,10 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^12.0.1",
     "@prisma/adapter-pg": "^7.10.0",
-    "@prisma/client": "^7.3.0",
+    "@prisma/client": "7.10.0",
     "graphql": "^16.14.2",
     "pg": "^8.23.0",
-    "prisma": "^8.0.0-rc.15",
+    "prisma": "7.10.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
