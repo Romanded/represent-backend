@@ -11,7 +11,7 @@ export class PrismaService extends PrismaClient {
     private configService: ConfigService
   ) {
     const pool = new Pool({
-      connectionString: configService.getOrThrow('COCKROACH_URI')
+      connectionString: configService.getOrThrow('COCKROACH_URI'),
       max: 1,
       idleTimeoutMillis: 10000,
       connectionTimeoutMillis: 10000,
