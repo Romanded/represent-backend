@@ -6,7 +6,7 @@ import { DeveloperModel } from './models/developer.model.js';
 export class DeveloperResolver {
   constructor(private readonly developerService: DeveloperService) {}
 
-  @Query(() => DeveloperModel, { name: 'findOneDeveloper' })
+  @Query(() => DeveloperModel, { name: 'findOneDeveloper', nullable: true })
   findOne(@Args('id') id: string) {
     return this.developerService.findOne(id);
   }
